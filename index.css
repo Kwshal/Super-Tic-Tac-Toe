@@ -6,17 +6,17 @@
 }
 
 body {
-     font-family: 'oxygen', sans-serif;
+     font-family: 'oxygen',  sans-serif;
 }
 
 #board {
-     height: 400px;
+     /* height: min(400px, 100vh); */
      width: min(400px, 100vw);
      display: grid;
      grid-template-columns: repeat(3, 1fr);
      background-color: #000;
-     gap: 3px;
-     border: 3px solid #000;
+     gap: 1px;
+     /* border: px solid #000; */
      color: #fff;
      position: relative;
 }
@@ -33,7 +33,7 @@ body {
      border-collapse: collapse;
      display: grid;
      grid-template-columns: repeat(3, 1fr);
-     gap: 1px;
+     gap: .5px;
      position: relative;
      /* vhgfhgfhgfhgfhgfhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk */
      /* background-color: #1b7c83; */
@@ -72,6 +72,10 @@ body {
      border: 1px solid #a53b3b;
      color: #fff;
 }
+#win-status {
+     color: gold;
+     padding: 5px;
+}
 
 .inactive {
      pointer-events: none;
@@ -79,7 +83,7 @@ body {
 }
 
 .inactive .subcell {
-     background-color: #eee;
+     background-color: #ccc;
 }
 h1, h2, h3 {
      text-align: center;

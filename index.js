@@ -1,7 +1,3 @@
-let token = {
-     xCount: 0,
-     oCount: 0
-}
 let moves = [
      Array.from({ length: 9 }, () => null),
      Array.from({ length: 9 }, () => null),
@@ -14,7 +10,7 @@ let moves = [
      Array.from({ length: 9 }, () => null),
 ]
 const superMoves = [
-     Array.from({ length: 9 }, () => null)
+     ...Array.from({ length: 9 }, () => null)
 ]
 
 const winConditions = [
@@ -64,11 +60,11 @@ function checkWinner(court, courtIdx) {
      const concluded = checkConclusion(moves[courtIdx], courtIdx)
      if (concluded) {
           court.innerHTML = `<span class="concluded">${concluded.toUpperCase()}</span>`
-          token[currPlayer + "Count"]++
-          document.getElementById(`${currPlayer}`).textContent = token[currPlayer + "Count"]
           const superWinner = checkSuperWinner(superMoves)
           if (superWinner) {
-               document.getElementById("win-status").textContent = `${currPlayer} wins!`
+               document.getElementById("win-status").textContent = superWinner
+               board.style.pointerEvents = 'none'
+
           }
      }
 }
@@ -77,7 +73,7 @@ function checkSuperWinner(arr) {
      for (let i = 0; i < winConditions.length; i++) {
           const [a, b, c] = winConditions[i]
           if (arr[a] && arr[a] === arr[b] && arr[a] === arr[c]) {
-               return currPlayer.toUpperCase() + 'wins!'
+               return currPlayer.toUpperCase() + ' Wins! 🏆'
           }
      }
      if (arr.length === 9 && arr.every((el) => el === "x" || el === "o")) {
@@ -90,7 +86,10 @@ function checkConclusion(arr, courtIdx) {
      for (let i = 0; i < winConditions.length; i++) {
           const [a, b, c] = winConditions[i]
           if (arr[a] && arr[a] === arr[b] && arr[a] === arr[c]) {
+
                superMoves[courtIdx] = arr[a]
+
+               // console.log(...superMoves)
                return arr[a]
           }
      }
